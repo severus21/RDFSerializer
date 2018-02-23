@@ -11,9 +11,7 @@ setup(
     author='Laurent Prosperi',
     classifiers=[
         'Development Status :: 4 - Beta',
-        # 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-        # ^ @severus21: this is a wild guess, please replace with anything that
-        # seems appropriate to you -- FIXME
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 3',
     ],
     python_requires='>=3',
