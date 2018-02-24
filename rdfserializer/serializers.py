@@ -105,8 +105,12 @@ class RDFManyLinker(RDFBinder):
 
 
 class RDFSerialiser:
-    pass
-
+    graph = Graph()
+    def __len__(self):
+        '''
+        Number of rdf triples actually stored
+        '''
+        return len(self.graph)
 
 class RDFModelSerialiser(RDFSerialiser):
     _type = None
@@ -115,7 +119,6 @@ class RDFModelSerialiser(RDFSerialiser):
 
     def __init__(self, graph=None):
         self.graph = graph if graph else Graph()
-
         self.work_done = False
 
     def node(self, model):
@@ -140,7 +143,7 @@ class RDFModelSerialiser(RDFSerialiser):
             for triple in self._triples(model):
                 self.graph.add(triple)
 
-    def serialize(self, format='xml', models=None):
+    def serialize(self, format='turtle', models=None):
         if models is None:
             self.triples()
         else:
