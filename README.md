@@ -4,6 +4,19 @@
 Examples:
 =========
 ```
+class PubOrigin(models.Model):
+    url = models.URLField(unique=True, db_index=True)
+    
+class PubAuthor(models.Model):
+    name = models.CharField(max_length=256)
+
+class PubPublisher(models.Model):
+    name = models.CharField(max_length=1024, unique=True, db_index=True)
+    href = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return str(self.name)
+
 class Publication(models.Model):
     title = models.CharField(max_length=1024, blank=True, null=True)
     authors = models.ManyToManyField(PubAuthor)
@@ -16,9 +29,6 @@ class Publication(models.Model):
 
 ```
 class PublicationRDFSerializer(RDFModelSerialiser):
-    '''
-    <pub> has_title <pub.title> 
-    '''
     _type = SCHEMA.Article
     model = Publication
     uri = reverse('publications:details')
